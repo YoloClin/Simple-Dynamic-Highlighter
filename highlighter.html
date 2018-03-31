@@ -2,6 +2,7 @@
   <head>
     <title>Simple Dynamic Highlighter</title>
     <link rel="stylesheet" href="./highlight/styles/default.css">
+    <link rel="stylesheet" href="./custom.css">
   </head>
   <body>
     <h1>Simple Dynamic Highlighter</h1>
@@ -172,6 +173,7 @@
       
       <button id="select_text">Select Text</button>
       <button id="copy_text">Copy Text</button>
+      <input id="toggle_line_numbers" type="checkbox" checked="checked">Line Numbers</input>
     </div>
     <div>
       Usage: C-v to paste, C-v to copy (if no text is selected, selects entire codeblock) 
@@ -180,20 +182,27 @@
     <pre>
       <code id="codeblock" class="javascript"></code>
     </pre>
-    <textarea style="display: none;" id="codeinput" rows="40" cols="80">Paste your code!</textarea>
+    <textarea style="display: none;" id="codeinput" rows="40" cols="80">var Paste = "Your";
+var awesome;
+var code!;</textarea>
   </body>
   <footer>
   <script src="./jquery-3.3.1.js"></script>
   <script src="./highlight/highlight.pack.js"></script>
+  <script src="./highlightjs-line-numbers.js"></script>
+
   <script>
-      $(document).ready(function(){
+    $(document).ready(function(){
+      hljs.initHighlightingOnLoad();
+          hljs.initLineNumbersOnLoad();
           // https://stackoverflow.com/questions/20509061/window-clipboarddata-getdatatext-doesnt-work-in-chrome
           document.addEventListener("paste", handle_paste);
           document.addEventListener("copy", handle_keyboard_copy);
-      
+                
           var languages = hljs.listLanguages()
           $("#select_text").on("click", copy_text);
           $("#copy_text").on("click", copy_text);
+          $("#toggle_line_numbers").change(resetCodeBlock);
           $("#codeinput").on("change", resetCodeBlock);
           $("#codeinput").on("keyup", resetCodeBlock);
           $("#language_list").on("change", function(){
@@ -247,10 +256,26 @@
         select_text()
         document.execCommand('copy');
       }
-      
+    
+      function escapeHtml(unsafe) {
+         return unsafe
+             .replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")  // Emacs syntax higlighter fix: "
+             .replace(/'/g, "&#039;")
+             .replace(/	/g, "    ")    // Tab
+             .replace(/ /g, "&nbsp;");
+      }
+
       function resetCodeBlock(){
-          $("#codeblock").html($("#codeinput").val());
+          var text = escapeHtml($("#codeinput").val())
+          $("#codeblock").html(text);
           hljs.highlightBlock($("#codeblock").get(0));
+          if ($("#toggle_line_numbers").is(":checked")){
+             hljs.lineNumbersBlock($("#codeblock").get(0));
+          }
+
       }
   </script>
 <!--
