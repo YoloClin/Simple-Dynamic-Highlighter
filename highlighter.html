@@ -1,0 +1,286 @@
+<html>
+  <head>
+    <title>Simple Dynamic Highlighter</title>
+    <link rel="stylesheet" href="./highlight/styles/default.css">
+  </head>
+  <body>
+    <h1>Simple Dynamic Highlighter</h1>
+    <div>
+      <select id="language_list">
+	<!-- 
+	     Based on http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html
+	     could be more dynamic but wanted the ability to order by hand
+	  -->
+
+	<option value="">None</option>
+	<option disabled="disabled">----</option>
+	<option value="javascript" selected="selected">JavaScript</option>
+	<option value="http">HTTP</option>
+	<option value="python">Python</option>
+	<option value="shell">Shell</option>
+	<option value="powershell">PowerShell</option>
+	<option value="php">PHP</option>
+	<option value="xml">HTML, XML</option>
+	<option disabled="disabled">----</option>
+	<option value="1c">1C</option>
+	<option value="abnf">ABNF</option>
+	<option value="accesslog">Access logs</option>
+	<option value="ada">Ada</option>
+	<option value="armasm">ARM assembler</option>
+	<option value="avrasm">AVR assembler</option>
+	<option value="actionscript">ActionScript</option>
+	<option value="apache">Apache</option>
+	<option value="applescript">AppleScript</option>
+	<option value="asciidoc">AsciiDoc</option>
+	<option value="aspectj">AspectJ</option>
+	<option value="autohotkey">AutoHotkey</option>
+	<option value="autoit">AutoIt</option>
+	<option value="awk">Awk</option>
+	<option value="axapta">Axapta</option>
+	<option value="bash">Bash</option>
+	<option value="basic">Basic</option>
+	<option value="bnf">BNF</option>
+	<option value="brainfuck">Brainfuck</option>
+	<option value="cs">C#</option>
+	<option value="cpp">C++</option>
+	<option value="cal">C/option</option>
+	<option value="cos">Cache Object Script</option>
+	<option value="cmake">CMake</option>
+	<option value="coq">Coq</option>
+	<option value="csp">CSP</option>
+	<option value="css">CSS</option>
+	<option value="capnproto">Cap’n Proto</option>
+	<option value="clojure">Clojure</option>
+	<option value="coffeescript">CoffeeScript</option>
+	<option value="crmsh">Crmsh</option>
+	<option value="crystal">Crystal</option>
+	<option value="d">D</option>
+	<option value="dns">DNS Zone file</option>
+	<option value="dos">DOS</option>
+	<option value="dart">Dart</option>
+	<option value="delphi">Delphi</option>
+	<option value="diff">Diff</option>
+	<option value="django">Django</option>
+	<option value="dockerfile">Dockerfile</option>
+	<option value="dsconfig">dsconfig</option>
+	<option value="dts">DTS (Device Tree)</option>
+	<option value="dust">Dust</option>
+	<option value="ebnf">EBNF</option>
+	<option value="elixir">Elixir</option>
+	<option value="elm">Elm</option>
+	<option value="erlang">Erlang</option>
+	<option value="excel">Excel</option>
+	<option value="fsharp">F#</option>
+	<option value="fix">FIX</option>
+	<option value="fortran">Fortran</option>
+	<option value="gcode">G-Code</option>
+	<option value="gams">Gams</option>
+	<option value="gauss">GAUSS</option>
+	<option value="gherkin">Gherkin</option>
+	<option value="go">Go</option>
+	<option value="golo">Golo</option>
+	<option value="gradle">Gradle</option>
+	<option value="groovy">Groovy</option>
+	<option value="haml">Haml</option>
+	<option value="handlebars">Handlebars</option>
+	<option value="haskell">Haskell</option>
+	<option value="haxe">Haxe</option>
+	<option value="hy">Hy</option>
+	<option value="ini">Ini</option>
+	<option value="inform7">Inform7</option>
+	<option value="irpf90">IRPF90</option>
+	<option value="json">JSON</option>
+	<option value="java">Java</option>
+	<option value="leaf">Leaf</option>
+	<option value="lasso">Lasso</option>
+	<option value="less">Less</option>
+	<option value="ldif">LDIF</option>
+	<option value="lisp">Lisp</option>
+	<option value="livecodeserver">LiveCode Server</option>
+	<option value="livescript">LiveScript</option>
+	<option value="lua">Lua</option>
+	<option value="makefile">Makefile</option>
+	<option value="markdown">Markdown</option>
+	<option value="mathematica">Mathematica</option>
+	<option value="matlab">Matlab</option>
+	<option value="maxima">Maxima</option>
+	<option value="mel">Maya Embedded Language</option>
+	<option value="mercury">Mercury</option>
+	<option value="mizar">Mizar</option>
+	<option value="mojolicious">Mojolicious</option>
+	<option value="monkey">Monkey</option>
+	<option value="moonscript">Moonscript</option>
+	<option value="n1ql">N1QL</option>
+	<option value="nsis">NSIS</option>
+	<option value="nginx">Nginx</option>
+	<option value="nimrod">Nimrod</option>
+	<option value="nix">Nix</option>
+	<option value="ocaml">OCaml</option>
+	<option value="objectivec">Objective C</option>
+	<option value="glsl">OpenGL Shading Language</option>
+	<option value="openscad">OpenSCAD</option>
+	<option value="ruleslanguage">Oracle Rules Language</option>
+	<option value="oxygene">Oxygene</option>
+	<option value="pf">PF</option>
+	<option value="parser3">Parser3</option>
+	<option value="perl">Perl</option>
+	<option value="pony">Pony</option>
+	<option value="processing">Processing</option>
+	<option value="prolog">Prolog</option>
+	<option value="protobuf">Protocol Buffers</option>
+	<option value="puppet">Puppet</option>
+	<option value="profile">Python profiler results</option>
+	<option value="k">Q</option>
+	<option value="qml">QML</option>
+	<option value="r">R</option>
+	<option value="rib">RenderMan RIB</option>
+	<option value="rsl">RenderMan RSL</option>
+	<option value="graph">Roboconf</option>
+	<option value="ruby">Ruby</option>
+	<option value="rust">Rust</option>
+	<option value="scss">SCSS</option>
+	<option value="sql">SQL</option>
+	<option value="p21">STEP Part 21</option>
+	<option value="scala">Scala</option>
+	<option value="scheme">Scheme</option>
+	<option value="scilab">Scilab</option>
+	<option value="smali">Smali</option>
+	<option value="smalltalk">Smalltalk</option>
+	<option value="stan">Stan</option>
+	<option value="stata">Stata</option>
+	<option value="stylus">Stylus</option>
+	<option value="subunit">SubUnit</option>
+	<option value="swift">Swift</option>
+	<option value="tap">Test Anything Protocol</option>
+	<option value="tcl">Tcl</option>
+	<option value="tex">TeX</option>
+	<option value="thrift">Thrift</option>
+	<option value="tp">TP</option>
+	<option value="twig">Twig</option>
+	<option value="typescript">TypeScript</option>
+	<option value="vbnet">VB.Net</option>
+	<option value="vbscript">VBScript</option>
+	<option value="vhdl">VHDL</option>
+	<option value="vala">Vala</option>
+	<option value="verilog">Verilog</option>
+	<option value="vim">Vim Script</option>
+	<option value="x86asm">x86 Assembly</option>
+	<option value="xl">XL</option>
+	<option value="xpath">XQuery</option>
+	<option value="zephir">Zephir</option>
+      </select>
+      
+      <button id="select_text">Select Text</button>
+      <button id="copy_text">Copy Text</button>
+    </div>
+    <div>
+      Usage: C-v to paste, C-v to copy (if no text is selected, selects entire codeblock) 
+    </div>
+    <div id="message" style="opacity: 0">Hello World!</div>
+    <pre>
+      <code id="codeblock" class="javascript"></code>
+    </pre>
+    <textarea style="display: none;" id="codeinput" rows="40" cols="80">Paste your code!</textarea>
+  </body>
+  <footer>
+  <script src="./jquery-3.3.1.js"></script>
+  <script src="./highlight/highlight.pack.js"></script>
+  <script>
+      $(document).ready(function(){
+          // https://stackoverflow.com/questions/20509061/window-clipboarddata-getdatatext-doesnt-work-in-chrome
+          document.addEventListener("paste", handle_paste);
+          document.addEventListener("copy", handle_keyboard_copy);
+      
+          var languages = hljs.listLanguages()
+          $("#select_text").on("click", copy_text);
+          $("#copy_text").on("click", copy_text);
+          $("#codeinput").on("change", resetCodeBlock);
+          $("#codeinput").on("keyup", resetCodeBlock);
+          $("#language_list").on("change", function(){
+              $("#codeblock").attr("class", $(this).val());
+              resetCodeBlock();
+          })
+          resetCodeBlock();
+      })
+      
+      function handle_keyboard_copy(e){
+          $("#message").css('opacity', '1.0');
+          $("#message").html("Copied!");
+          $("#message").animate({ opacity: 0 });
+          if (window.getSelection().toString() == ""){
+              e.stopPropagation();
+              e.preventDefault();
+              copy_text();
+          }
+      }
+      
+      function handle_paste(e){
+        // https://stackoverflow.com/questions/2176861/javascript-get-clipboard-data-on-paste-event-cross-browser
+        var clipboardData, pastedData;    
+        e.stopPropagation();
+        e.preventDefault();
+        
+        // Get pasted data via clipboard API
+        console.log(e.clipboardData);
+        
+        console.log(window.clipboardData);
+        clipboardData = e.clipboardData || window.clipboardData;
+        pastedData = clipboardData.getData('Text');
+        
+        // Do whatever with pasteddata
+        $("#codeinput").val(pastedData);
+        resetCodeBlock();
+      }
+
+      function select_text(){
+        // https://stackoverflow.com/questions/12982156/select-copy-text-using-javascript-or-jquery
+        //Before we copy, we are going to select the text.
+        var text = document.getElementById("codeblock");
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+      
+      function copy_text() {
+        select_text()
+        document.execCommand('copy');
+      }
+      
+      function resetCodeBlock(){
+          $("#codeblock").html($("#codeinput").val());
+          hljs.highlightBlock($("#codeblock").get(0));
+      }
+  </script>
+<!--
+This file is Copyright (c) <2018>, <Colin Smith>
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+The views and conclusions contained in the software and documentation are those
+of the authors and should not be interpreted as representing official policies,
+either expressed or implied, of the FreeBSD Project.
+
+All other files in this repository are subject to their own copywrite terms
+-->
+</html>
